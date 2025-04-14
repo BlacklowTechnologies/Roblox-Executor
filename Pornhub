@@ -1,0 +1,17 @@
+local https = require("ssl.https")
+
+local response_body = {}
+
+local res, code, response_headers, status = https.request{
+    url = "Https://Pornhub.com",
+    method = "GET",
+    sink = ltn12.sink.table(response_body)
+}
+
+if res == 1 then
+    print("Status Code: " .. code)
+    print("Response:")
+    print(table.concat(response_body))
+else
+    print("Request failed!")
+end
